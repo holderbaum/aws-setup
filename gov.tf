@@ -28,6 +28,30 @@ resource "aws_iam_group_policy" "res_admins_policy" {
 EOF
 }
 
+# create a group policy, which allows to change password
+resource "aws_iam_group_policy" "change_password_policy" {
+    provider = "aws.gov"
+    name = "ChangePasswordPolicy"
+    group = "${aws_iam_group.res_admins.id}"
+    policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "iam:GetAccountPasswordPolicy",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "iam:ChangePassword",
+            "Resource": "arn:aws:iam::${var.gov_account_id}:user/$${aws:username}"
+        }
+    ]
+}
+EOF
+}
+
 # create a user "bob"
 resource "aws_iam_user" "bob" {
     provider = "aws.gov"
