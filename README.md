@@ -25,7 +25,7 @@ res_alias = "unique alias of the res account" # e.g. mystartup-res
 gov_account_id = "..."
 gov_access_key = "..."
 gov_secret_key = "..."
-gov_alias = "unique alias of the res account" # e.g. mystartup-gov
+gov_alias = "unique alias of the gov account" # e.g. mystartup-gov
 ```
 
 Run `terraform plan`.
