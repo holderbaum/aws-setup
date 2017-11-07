@@ -5,6 +5,11 @@ provider "aws" {
     secret_key = "${var.gov_secret_key}"
 }
 
+resource "aws_iam_account_alias" "gov_alias" {
+    provider = "aws.gov"
+    account_alias = "${var.gov_alias}"
+}
+
 # create a group, which will be able to assume "ExternalAdminRole" from res account
 resource "aws_iam_group" "res_admins" {
     provider = "aws.gov"

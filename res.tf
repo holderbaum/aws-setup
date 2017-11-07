@@ -5,6 +5,11 @@ provider "aws" {
   secret_key = "${var.res_secret_key}"
 }
 
+resource "aws_iam_account_alias" "res_alias" {
+    provider = "aws.res"
+    account_alias = "${var.res_alias}"
+}
+
 # in res account create iam policy, which will grants admin rights
 resource "aws_iam_policy" "external_admin_policy" {
     provider = "aws.res"
